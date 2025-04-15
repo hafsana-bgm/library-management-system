@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Library_project.DataModel.Member>
+
+ @{
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+	ViewData["Title"] = "EduCut Product Page";
+}
+
+
+
+<!-- Default box -->
+<div class="box">
+	<div class="box-header with-border">
+		<h3 class="box-title">Title</h3>
+		
+	</div>
+	<div class="box-body">
+
+
+		<div class="container my-5">
+
+			<table class="table table-hover my-5">
+				<thead class="table-info">
+					<tr>
+						<th>Serial</th>
+						<th>Name </th>
+						<th>Email </th>
+						<th>Phone</th>
+						<th>Type</th> 
+						<th>Address</th> 
+						<th>IsActive</th> 
+						<th>Action</th>
+
+
+
+
+					</tr>
+				</thead>
+
+				<tbody>
+
+					@{
+						int serial = 1;
+						foreach(var data in Model)
+						{
+							<tr>
+								<td>@serial</td>
+								<td>@data.MemberName</td>
+								<td>@data.MemberEmail</td>
+								<td>@data.MemberPhone</td>
+								<td>@data.MemberType</td>
+								<td>@data.MemberAddress</td>
+								<td>@data.IsActive</td>
+								<td>
+									<a class="btn btn-warning" asp-route-id="@data.MemberId" asp-action="MemberEdit" asp-controller="Membership">Edit</a>
+									<a class="btn btn-danger" asp-route-id="@data.MemberId" asp-action="MemberDelete">Delete</a>
+								</td>
+
+							</tr>
+							serial++;
+						}
+
+					}
+				
+
+				</tbody>
+
+
+			</table>
+
+
+		</div>
+
+	</div><!-- /.box-body -->
+	<div class="box-footer">
+		Footer
+	</div><!-- /.box-footer-->
+</div><!-- /.box --> 
