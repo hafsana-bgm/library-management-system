@@ -1,17 +1,8 @@
-﻿<li class="nav-item">
-    <a asp-action="ReservList" asp-controller="Restorant" class="nav-link">
-
-        <p>
-            Librabry Info
-
-        </p>
-    </a>
-
-</li>
+﻿
 
 <li class="nav-item">
     <a href="#" class="nav-link">
-        <i class="nav-icon fas fa-tachometer-alt"></i>
+        <i class="fa fa-users" aria-hidden="true"></i>
         <p>
             Membership
             <i class="right fas fa-angle-left"></i>
@@ -31,13 +22,31 @@
             </a>
         </li>
 
-        @*  <li class="nav-item">
-            <a asp-action="Lebls" asp-controller="Menus" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Label List </p>
-            </a>
-        </li> *@
+    </ul>
+</li>
 
+
+<li class="nav-item">
+    <a href="#" class="nav-link">
+        <i class="fa fa-book" aria-hidden="true"></i>
+        <p>
+            Book
+            <i class="right fas fa-angle-left"></i>
+        </p>
+    </a>
+    <ul class="nav nav-treeview">
+        <li class="nav-item">
+            <a asp-action="BookIndex" asp-controller="Books" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Book Create </p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a asp-action="BookList" asp-controller="Books" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Book List</p>
+            </a>
+        </li>
 
     </ul>
 </li>

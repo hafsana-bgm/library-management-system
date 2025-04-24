@@ -50,11 +50,6 @@ namespace Library_project.Controllers
         {
             if(Bookdata.MemberName != null && Bookdata.MemberAddress != null && Bookdata.MemberType != null )
             {
-
-            ////var data = _context.Members.Where(x => x.MemberId == Bookdata.MemberId).FirstOrDefault();
-            ////if(data != null)
-            //    {    
-            //    }
                 _context.Update(Bookdata);
                     _context.SaveChanges();
             }

@@ -14,6 +14,8 @@ namespace Library_project.Data
 
         }
         public Microsoft.EntityFrameworkCore.DbSet<Member> Members { get; set; }
-       
+        public DbSet<Book> Treatise {  get; set; }
+
+
     }
 }
