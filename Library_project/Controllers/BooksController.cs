@@ -1,6 +1,10 @@
 ﻿using Library_project.Data;
 using Library_project.DataModel;
+using Library_project.ViewModel;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Identity.Client;
+using NuGet.Packaging;
 
 namespace Library_project.Controllers
 {
@@ -12,28 +16,67 @@ namespace Library_project.Controllers
         { 
             _context = context;
         }
-
-
-
-
-
-
-
-
         public IActionResult BookIndex()
         {
+
+
+            ViewBag.Lebellist = _context.BooksLebels.Select(x=>new SelectListItem
+            {
+                Value = x.BookLebelId.ToString(),
+                Text = x.BookLebelName
+            }).ToList();
+
             return View();
         }
+
+  
         [HttpPost]
-        public IActionResult BookIndex(Book books)
+        public async Task<IActionResult> BookIndex(BookVM books)
         {
-            if(books.BookName !=null && books.WriterName !=null && books.Image !=null && books.Isactive)
+            string UniqueFileName = null;
+
+            if(books.UploadImage != null)
             {
-                _context.Add(books);
-                _context.SaveChanges();
+                string UploadFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\UploadImage");
+
+                UniqueFileName = Guid.NewGuid().ToString() + "_" + books.UploadImage.FileName;
+                string filepath = Path.Combine(UploadFolder, UniqueFileName);
+
+                if (!Directory.Exists(UploadFolder))
+                {
+                    Directory.CreateDirectory(UploadFolder);
+                }
+                using(var filestream = new FileStream(filepath,FileMode.Create))
+                {
+                    await books.UploadImage.CopyToAsync(filestream);
+                }
             }
+
+            var RealDataModel = new Book();
+
+            RealDataModel.BookName = books.BookName;
+            RealDataModel.Price = books.Price;           
+            RealDataModel.Image = UniqueFileName;
+
+            _context.Treatise.Add(RealDataModel);
+
+            _context.SaveChanges();
+
+            ViewBag.Lebellist = _context.BooksLebels.Select(x => new SelectListItem
+            {
+                Value = x.BookLebelId.ToString(),
+                Text = x.BookLebelName
+            }).ToList();
             return RedirectToAction("BookIndex");
         }
+        //{
+        //    if(books.BookName !=null && books.WriterName !=null && books.Image !=null && books.Isactive)
+        //    {
+        //        _context.Add(books);
+        //        _context.SaveChanges();
+        //    }
+        //   
+        //}
         public IActionResult BookList()
         {
             var data = _context.Treatise.ToList();

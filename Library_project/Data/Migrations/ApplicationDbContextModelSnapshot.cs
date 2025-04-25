@@ -30,6 +30,9 @@ namespace Library_project.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookId"));
 
+                    b.Property<int>("BookLebelId")
+                        .HasColumnType("int");
+
                     b.Property<string>("BookName")
                         .HasColumnType("nvarchar(max)");
 
@@ -51,6 +54,22 @@ namespace Library_project.Data.Migrations
                     b.HasKey("BookId");
 
                     b.ToTable("Treatise");
+                });
+
+            modelBuilder.Entity("Library_project.DataModel.BookLebel", b =>
+                {
+                    b.Property<int>("BookLebelId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookLebelId"));
+
+                    b.Property<string>("BookLebelName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("BookLebelId");
+
+                    b.ToTable("BooksLebels");
                 });
 
             modelBuilder.Entity("Library_project.DataModel.Member", b =>
