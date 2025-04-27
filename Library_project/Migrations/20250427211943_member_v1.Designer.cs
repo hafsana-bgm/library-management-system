@@ -9,11 +9,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Library_project.Data.Migrations
+namespace Library_project.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250424055808_Create1")]
-    partial class Create1
+    [Migration("20250427211943_member_v1")]
+    partial class member_v1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -56,7 +56,7 @@ namespace Library_project.Data.Migrations
 
                     b.HasKey("BookId");
 
-                    b.ToTable("Treatise");
+                    b.ToTable("Books");
                 });
 
             modelBuilder.Entity("Library_project.DataModel.BookLebel", b =>
@@ -103,7 +103,7 @@ namespace Library_project.Data.Migrations
 
                     b.HasKey("MemberId");
 
-                    b.ToTable("Members");
+                    b.ToTable("Member");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

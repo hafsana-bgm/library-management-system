@@ -58,7 +58,7 @@ namespace Library_project.Controllers
             RealDataModel.Price = books.Price;           
             RealDataModel.Image = UniqueFileName;
 
-            _context.Treatise.Add(RealDataModel);
+            _context.Books.Add(RealDataModel);
 
             _context.SaveChanges();
 
@@ -79,7 +79,7 @@ namespace Library_project.Controllers
         //}
         public IActionResult BookList()
         {
-            var data = _context.Treatise.ToList();
+            var data = _context.Books.ToList();
 
             return View(data);
         }
@@ -90,7 +90,7 @@ namespace Library_project.Controllers
             
                 return NotFound();
 
-                var book = _context.Treatise.FirstOrDefault(t => t.BookId == id);
+                var book = _context.Books.FirstOrDefault(t => t.BookId == id);
                 
                 return View(book);
            
@@ -113,7 +113,7 @@ namespace Library_project.Controllers
             {
                 return NotFound();
             }
-            var Member = _context.Treatise.FirstOrDefault(t => t.BookId == id);
+            var Member = _context.Books.FirstOrDefault(t => t.BookId == id);
 
             if (Member == null)
             {

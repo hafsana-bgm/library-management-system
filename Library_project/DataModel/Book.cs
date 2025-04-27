@@ -18,8 +18,7 @@ namespace Library_project.DataModel
 
     public class BookLebel
     {
-        [Key]
-      
+        [Key]      
         public int BookLebelId { get; set; }
         public string? BookLebelName { get; set; }
     }

@@ -32,7 +32,7 @@ namespace Library_project.Controllers
 
         public IActionResult MemberList()
         {
-            var data = _context.Members.Where(x=>true).ToList() ;
+            var data = _context.Member.Where(x=>true).ToList() ;
             return View(data);
         }
 
@@ -41,7 +41,7 @@ namespace Library_project.Controllers
             if (id == null)
                 return NotFound();
 
-            var Bookdata = _context.Members.FirstOrDefault(x => x.MemberId == id);
+            var Bookdata = _context.Member.FirstOrDefault(x => x.MemberId == id);
             return View(Bookdata);
         }
 
@@ -63,7 +63,7 @@ namespace Library_project.Controllers
                 return NotFound();
             }
 
-            var Customer = _context.Members.FirstOrDefault(x => x.MemberId == id);
+            var Customer = _context.Member.FirstOrDefault(x => x.MemberId == id);
 
             if (Customer == null)
             {
