@@ -1,6 +1,7 @@
 ﻿using Library_project.Data;
 using Library_project.DataModel;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.SqlServer.Server;
 
 namespace Library_project.Controllers
 {
@@ -21,9 +22,11 @@ namespace Library_project.Controllers
          {
             if (Customer.MemberPhone !=null )
             {
-               
+                _context.Member.Add(Customer);
+                _context.SaveChanges();
+                return Json(new { success = true, msg = "Data Saved!" });
             }
-            return View();
+            return Json(new{success = false,msg = "faild!" });
          }
    
     }
