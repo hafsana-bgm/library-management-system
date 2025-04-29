@@ -145,49 +145,93 @@
 
 @section Scripts {
 	<script>
-
-		const fetchPhoneSuggestions = debounce(function(phoneNumber){
-			if(phonenumber.length < 3){
-				$('#suggestions').hide();
-				return;
+		$(document).ready(function () {
+			// Debounce function
+			function debounce(func, delay) {
+				let timeoutId;
+				return function (...args) {
+					clearTimeout(timeoutId);
+					timeoutId = setTimeout(() => func.apply(this, args), delay);
+				};
 			}
-		});
 
-		$('#MemberPhone').on('input',function(){
-			const phonenumber = $(this).val();
-			$('#MemberId').val('0');
-			fetchPhoneSuggestions(phonenumber);
-		});
-		// function phonenumberinput(number){
+			// Function to populate selected suggestion
+			function populateSuggestion(item) {
+				$('#MemberId').val(item.id || '0');
+				$('#MemberName').val(item.name || '');
+				$('#MemberPhone').val(item.phone || '');
+				$('#MemberAddress').val(item.address || '');
+				$('#suggestions').hide();
+			}
 
-		// 	let phonenumber = number.value;
-		// 	const Name = number.querySeletor('#MemberName').value;
-		// 	const Address = number.querySeletor('#MemberAddress').value;
-
-
-		// 		var formData = {
-		// 		//MemberName : $('#MemberName').val(),
-		// 		MemberPhone : $('#MemberPhone').val(),
-		// 		//MemberAddress : $('#MemberAddress').val()
-		// 		};
-
-		// 		console.log(FormData);
-
-		$.ajax({
-				url: '/BookSell/BookSells',
-				type: 'POST',
-				data: formData,
-				success: function (obj) {
-					alert('Done!');
-				},
-				error: function (xhr, status, error) {
-					
-					alert('Error!');
+			// Fetch phone suggestions
+			const fetchPhoneSuggestions = debounce(function (phoneNumber) {
+				if (phoneNumber.length < 3) {
+					$('#suggestions').hide();
+					return;
 				}
-		});
 
-		
+				$.ajax({
+					url: '/BookSell/Phone',
+					type: 'GET',
+					data: { phone: phoneNumber },
+					success: function (data) {
+						const suggestionsDiv = $('#suggestions');
+						suggestionsDiv.empty().hide();
+
+						if (data.success && data.search && data.search.length) {
+							data.search.forEach(function (item) {
+								const suggestionItem = $(`
+									<div class="suggestion-item"
+										 style="padding: 5px; cursor: pointer;"
+										 data-id="${item.memberId}"
+										 data-name="${item.memberName}"
+										 data-phone="${item.memberPhone}"
+										 data-address="${item.memberAddress}">
+										 ${item.memberName} - ${item.memberPhone}
+									</div>
+								`);
+
+								suggestionItem.on('click', function () {
+									populateSuggestion({
+										id: $(this).data('id'),
+										name: $(this).data('name'),
+										phone: $(this).data('phone'),
+										address: $(this).data('address')
+									});
+								});
+
+								suggestionsDiv.append(suggestionItem);
+							});
+							suggestionsDiv.show();
+						} else {
+							suggestionsDiv.append(`<div style="padding: 5px;">No suggestions found</div>`);
+							suggestionsDiv.show();
+						}
+					},
+					error: function () {
+						console.error('Error fetching phone suggestions.');
+						$('#suggestions').hide();
+					}
+				});
+			}, 300); // Debounce delay
+
+			// Attach input event
+			$('#MemberPhone').on('input', function () {
+				const phoneNumber = $(this).val();
+				$('#MemberId').val('0');
+				fetchPhoneSuggestions(phoneNumber);
+			});
+
+			// Hide suggestions on outside click
+			$(document).on('click', function (e) {
+				if (!$(e.target).closest('#MemberPhone, #suggestions').length) {
+					$('#suggestions').hide();
+				}
+			});
+		});
 	</script>
+
 
 }
 

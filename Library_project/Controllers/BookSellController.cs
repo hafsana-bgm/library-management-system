@@ -16,22 +16,32 @@ namespace Library_project.Controllers
         {
             return View();
         }
-        [HttpPost]
-       
-         public IActionResult BookSells(Member Customer)
-         {
 
-
-            var search = _context.Member.Where(x => x.MemberPhone == Customer.MemberPhone).ToList();
-
-            if (Customer.MemberPhone !=null )
+        [HttpGet]
+        public IActionResult Phone(string phone)
+        {
+            try
             {
-                _context.Member.Add(Customer);
-                _context.SaveChanges();
-                return Json(new { success = true});
+                var search = _context.Member
+                    .Where(x => x.MemberPhone.StartsWith(phone))
+                    .Select(x => new
+                    {
+                        memberId = x.MemberId,
+                        memberName = x.MemberName,
+                        memberPhone = x.MemberPhone,
+                        memberAddress = x.MemberAddress
+                    })
+                    .Take(5)
+                    .ToList();
+
+                return Json(new { success = true, search });
             }
-            return Json(new{success = false});
-         }
-   
+            catch
+            {
+                return Json(new { success = false });
+            }
+        }
+
+
     }
 }
