@@ -22,17 +22,14 @@ namespace Library_project.Controllers
         {
             try
             {
-                var search = _context.Member
-                    .Where(x => x.MemberPhone.StartsWith(phone))
-                    .Select(x => new
+                var search = _context.Member.Where(x => x.MemberPhone.StartsWith(phone)).Select(x => new
                     {
                         memberId = x.MemberId,
                         memberName = x.MemberName,
                         memberPhone = x.MemberPhone,
                         memberAddress = x.MemberAddress
                     })
-                    .Take(5)
-                    .ToList();
+                    .Take(5).ToList();
 
                 return Json(new { success = true, search });
             }
