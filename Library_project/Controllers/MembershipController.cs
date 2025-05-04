@@ -56,25 +56,59 @@ namespace Library_project.Controllers
             return RedirectToAction("MemberList");
         }
 
+        [HttpPost]
+
         public IActionResult MemberDelete(int? id)
         {
-            if (id == null)
+            try
             {
-                return NotFound();
+               
+                    var member = _context.Member.FirstOrDefault(x => x.MemberId == id);
+                if (member != null)
+                    {
+                        _context.Member.Remove(member);
+                        _context.SaveChanges();
+                        return Json(new{success = true});
+                    }
+                    else
+                    {
+                        return Json(new { success = false });
+                    }
+              
+                
+          
+            
             }
-
-            var Customer = _context.Member.FirstOrDefault(x => x.MemberId == id);
-
-            if (Customer == null)
+            catch (Exception ex)
             {
-                return NotFound();
+                return Json(new {success = false, message = ex.Message });
             }
-
-            _context.Remove(Customer);
-            _context.SaveChanges();
-
-            return RedirectToAction("MemberList");
-
         }
+
+
+
+
+        //public IActionResult MemberDelete(int? id)
+        //{
+
+        //        if (id == null)
+        //        {
+        //        return NotFound();
+        //        }
+
+        //    var Customer = _context.Member.FirstOrDefault(x => x.MemberId == id);
+
+        //    if (Customer == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    _context.Remove(Customer);
+        //    _context.SaveChanges();
+
+        //    return RedirectToAction("MemberList");
+
+        //}
+
     }
 }

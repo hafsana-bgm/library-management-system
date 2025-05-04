@@ -39,7 +39,7 @@
 						int serial = 1;
 						foreach(var data in Model)
 						{
-							<tr>
+							<tr id="row-@data.MemberId">
 								<td>@serial</td>
 								<td>@data.MemberName</td>
 								<td>@data.MemberEmail</td>
@@ -49,15 +49,16 @@
 								<td>@data.IsActive</td>
 								<td>
 									<a class="btn btn-warning" asp-route-id="@data.MemberId" asp-action="MemberEdit" asp-controller="Membership">Edit</a>
-									<a class="btn btn-danger" asp-route-id="@data.MemberId" asp-action="MemberDelete">Delete</a>
+									<a class="btn btn-danger" onclick="DataDelete(@data.MemberId)">Delete</a>
 								</td>
-
+								<td name="MemberId" id="MemberId" type="hidden" ></td>
 							</tr>
+							
 							serial++;
 						}
 
 					}
-				
+					
 
 				</tbody>
 
@@ -72,3 +73,45 @@
 		Footer
 	</div><!-- /.box-footer-->
 </div><!-- /.box --> 
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+@section Scripts {
+	<script>
+		$(document).ready(function(){
+			function DataDelete(id){
+
+				alert(id);
+
+				Consol.log()
+				if(confirm("Are you sure you want to delete this product?")){
+
+					$.ajax({
+						url: '/Membership/MemberDelete',
+						type: 'POST',
+						data: { id: id },
+						success: function(response){
+							if(response.success)
+							{
+								$("#row-" + id).remove();
+							}
+							else
+							{
+								alert("Error:"+response.message);
+							}
+							alert("Delete Successfully");
+							
+						},
+						error: function(error){
+							alert("Faild!");
+						}
+					});
+
+				}
+			}
+		
+		});
+
+	</script>
+}
