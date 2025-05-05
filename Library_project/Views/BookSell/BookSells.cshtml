@@ -1,9 +1,11 @@
-﻿	@{
+﻿@model Library_project.DataModel.Member
+
+@{
 	ViewData["Title"] = "BookSells";
 	Layout = "~/Views/Shared/_AdminLayout.cshtml";
 	}
 
-	@model Library_project.DataModel.Member
+
 
 	<div class="bg-light p-4">
 
@@ -62,30 +64,31 @@
 			</div>
 		</div>
 	</div>
-
+	
 	<!-- Invoice Items -->
 	<div class="card mb-4 ">
 		<div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
 			Invoice Items
-			<button class="btn btn-danger btn-sm">Add Item</button>
+			<button class="btn btn-danger btn-sm" id="AddItem">Add Item</button>
 		</div>
 		<div class="card-body row g-2">
 			<div class="col-md-4">
-				<input type="text" class="form-control" placeholder="Add Product Description">
+					<input type="text" class="form-control" id="Description" placeholder="Add Product Description">
 			</div>
 			<div class="col-md-2">
-				<input type="number" class="form-control" placeholder="Quantity" value="1">
+					<input type="number" class="form-control" id="Quantity" placeholder="Quantity" value="1">
 			</div>
 			<div class="col-md-2">
-				<input type="number" class="form-control" placeholder="Unit Price">
+					<input type="number" class="form-control" id="Price" placeholder="Unit Price">
 			</div>
 			<div class="col-md-2">
-				<input type="number" class="form-control" placeholder="Discount %">
+					<input type="number" class="form-control" id="Discount" placeholder="Discount %">
 			</div>
 			<div class="col-md-2">
 				<input type="text" class="form-control" value="0" readonly>
 			</div>
 		</div>
+			<div id="result style="margin-top:10px;"></div>
 	</div>
 
 	<!-- Order List and Order Summary -->
@@ -142,6 +145,7 @@
 	</div>
 	</div>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 @section Scripts {
 	<script>
@@ -234,4 +238,27 @@
 
 
 }
+
+
+	<script>
+	$('#AddItem').cliclk(function(){
+		alert("hello");
+	var data =
+	 {
+	Description: $('#Description').val(),
+	Quantity: $('#Quantity').val(),
+	Price: $('#Price'),
+	Discount: $('#Discount')
+	 };
+
+	 $.ajax({
+		 url:'/Account/BookSell',
+
+	 })
+
+	})
+
+	</script>
+
+
 

@@ -39,6 +39,10 @@ namespace Library_project.Controllers
             }
         }
 
+        public IActionResult Account()
+        {
+            return View();
+        }
 
     }
 }
