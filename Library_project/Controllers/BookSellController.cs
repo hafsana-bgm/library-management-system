@@ -39,10 +39,22 @@ namespace Library_project.Controllers
             }
         }
 
-        public IActionResult Account()
-        {
-            return View();
-        }
+        [HttpPost]
+        //public IActionResult Account(FormCollection form)
+        //{
+        //    int quantity = int.Parse(form["Quantity"]);
+        //    double price = double.Parse(form["Price"]);
+        //    double discount = double.Parse(form["Discount"]);
+
+        //    double total = quantity* price;
+        //    double discountAmount = total * (double)(discount / 100.0);
+        //    double finalAmount = total - discountAmount;
+
+        //    return Json(new { Total = finalAmount});
+        //}
+
+
 
     }
 }
+

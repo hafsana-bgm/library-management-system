@@ -71,24 +71,24 @@
 			Invoice Items
 			<button class="btn btn-danger btn-sm" id="AddItem">Add Item</button>
 		</div>
-		<div class="card-body row g-2">
+		<div class="card-body row g-2" id="InRowProduct">
 			<div class="col-md-4">
-					<input type="text" class="form-control" id="Description" placeholder="Add Product Description">
+					<input type="text" class="form-control" id="Description" oninput="calculate(this)" placeholder="Add Product Description">
 			</div>
 			<div class="col-md-2">
-					<input type="number" class="form-control" id="Quantity" placeholder="Quantity" value="1">
+					<input type="number" class="form-control" id="Quantity" oninput="calculate(this)" placeholder="Quantity" value="1">
 			</div>
 			<div class="col-md-2">
-					<input type="number" class="form-control" id="Price" placeholder="Unit Price">
+					<input type="number" class="form-control" id="Price" oninput="calculate(this)" placeholder="Unit Price">
 			</div>
 			<div class="col-md-2">
-					<input type="number" class="form-control" id="Discount" placeholder="Discount %">
+					<input type="number" class="form-control" id="Discount" oninput="calculate(this)" placeholder="Discount %">
 			</div>
 			<div class="col-md-2">
-				<input type="text" class="form-control" value="0" readonly>
+				<input type="text" class="form-control" id="Total" value="0" readonly>
 			</div>
 		</div>
-			<div id="result style="margin-top:10px;"></div>
+		
 	</div>
 
 	<!-- Order List and Order Summary -->
@@ -240,25 +240,55 @@
 }
 
 
-	<script>
-	$('#AddItem').cliclk(function(){
-		alert("hello");
-	var data =
-	 {
-	Description: $('#Description').val(),
-	Quantity: $('#Quantity').val(),
-	Price: $('#Price'),
-	Discount: $('#Discount')
-	 };
+<script>
+	 
+	function calculate(input) {
+		let row = input.closest('.row'); // সঠিকভাবে row খুঁজে বের করা
+		let quantityInput = row.querySelector('[id="Quantity"]');
+		let priceInput = row.querySelector('[id="Price"]');
+		let discountInput = row.querySelector('[id="Discount"]');
+		let totalInput = row.querySelector('[id="Total"]');
 
-	 $.ajax({
-		 url:'/Account/BookSell',
+		let quantity = parseFloat(quantityInput.value) || 0;
+		let price = parseFloat(priceInput.value) || 0;
+		let discount = parseFloat(discountInput.value) || 0;
 
-	 })
+		let total = quantity * price;
+		let discountAmount = total * (discount / 100);
+		let finalAmount = total - discountAmount;
 
-	})
+		totalInput.value = finalAmount.toFixed(2); // দুই ঘর দশমিক
+	}
+ 
 
-	</script>
+
+
+	// $('#AddItem').cliclk(function(){
+	// 	alert("hello");
+	// var data =
+	//  {
+	// Description: $('#Description').val(),
+	// Quantity: $('#Quantity').val(),
+	// Price: $('#Price'),
+	// Discount: $('#Discount')
+	//  };
+
+	//  $.ajax({
+	// 	 url:'/Account/BookSell',
+	// 	 type:'POST',
+	// 	 data:data,
+	// 	 success: function(response){
+	// 		 $('#Total').val(response.Total.toFixed(2));
+	// 	 },
+	// 	 error:function(){
+	// 		 alert('Faild!');
+	// 	 }
+
+	//  });
+
+	// });
+
+</script>
 
 
 
