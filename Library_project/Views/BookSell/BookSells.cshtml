@@ -3,115 +3,115 @@
 @{
 	ViewData["Title"] = "BookSells";
 	Layout = "~/Views/Shared/_AdminLayout.cshtml";
-	}
+}
 
 
 
-	<div class="bg-light p-4">
+<div class="bg-light p-4">
 
 	<div class="container">
 
-	<!-- Customer and Invoice Details -->
-	<div class="row g-3 mb-4 my-3">
-		<div class="col-md-8">
-			<div class="card">
-				<div class="card-header bg-info text-white">
-					Customer Details
-				</div>
-				<div class="card-body">
-					<div class="mb-3">
+		<!-- Customer and Invoice Details -->
+		<div class="row g-3 mb-4 my-3">
+			<div class="col-md-8">
+				<div class="card">
+					<div class="card-header bg-info text-white">
+						Customer Details
+					</div>
+					<div class="card-body">
+						<div class="mb-3">
 
-						<label>Phone*</label>
+							<label>Phone*</label>
 							<input type="number" class="form-control" id="MemberPhone"  oninput="phonenumberinput(this)" placeholder="Enter Phone Number">
 							<div id="suggestions" style="position:absolute;z-index:1000;background:white;border:1px solid #ccc; display:none;">
 
 							</div>
-					</div>
-					<div class="mb-3">
-						<label>Name</label>
+						</div>
+						<div class="mb-3">
+							<label>Name</label>
 							<input type="text" class="form-control" id="MemberName" oninput="calculate(this)" placeholder="Enter Customer Name">
-					</div>
-					<div class="mb-3">
-						<label>Address</label>
+						</div>
+						<div class="mb-3">
+							<label>Address</label>
 							<input type="text" class="form-control" id="MemberAddress" oninput="calculate(this)" placeholder="Enter Address">
-					</div>
+						</div>
 						<input name="MemberId" id="MemberId" type="hidden" />
-				
-				</div>
-			</div>
-		</div>
 
-
-		<div class="col-md-4">
-			<div class="card">
-				<div class="card-header bg-info text-white">
-					Invoice Details
-				</div>
-				<div class="card-body">
-					<div class="mb-3">
-						<label>Invoice ID</label>
-						<input type="text" class="form-control" value="20250424160042">
-					</div>
-					<div class="mb-3">
-						<label>Printed By</label>
-						<input type="text" class="form-control" placeholder="Enter Printer's Name">
-					</div>
-					<div class="mb-3">
-						<label>Date</label>
-						<input type="date" class="form-control" value="2025-04-24">
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
-	
-	<!-- Invoice Items -->
-	<div class="card mb-4 ">
-		<div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
-			Invoice Items
-			<button class="btn btn-danger btn-sm" id="AddItem">Add Item</button>
-		</div>
-		<div class="card-body row g-2" id="InRowProduct">
+
+
 			<div class="col-md-4">
-					<input type="text" class="form-control" id="Description" oninput="calculate(this)" placeholder="Add Product Description">
-			</div>
-			<div class="col-md-2">
-					<input type="number" class="form-control" id="Quantity" oninput="calculate(this)" placeholder="Quantity" value="1">
-			</div>
-			<div class="col-md-2">
-					<input type="number" class="form-control" id="Price" oninput="calculate(this)" placeholder="Unit Price">
-			</div>
-			<div class="col-md-2">
-					<input type="number" class="form-control" id="Discount" oninput="calculate(this)" placeholder="Discount %">
-			</div>
-			<div class="col-md-2">
-				<input type="text" class="form-control" id="Total" value="0" readonly>
+				<div class="card">
+					<div class="card-header bg-info text-white">
+						Invoice Details
+					</div>
+					<div class="card-body">
+						<div class="mb-3">
+							<label>Invoice ID</label>
+							<input type="text" class="form-control" value="20250424160042">
+						</div>
+						<div class="mb-3">
+							<label>Printed By</label>
+							<input type="text" class="form-control" placeholder="Enter Printer's Name">
+						</div>
+						<div class="mb-3">
+							<label>Date</label>
+							<input type="date" class="form-control" value="2025-04-24">
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-		
-	</div>
 
-	<!-- Order List and Order Summary -->
-	<div class="row g-3">
-		<div class="col-md-8">
-			<div class="card">
-				<div class="card-header bg-info text-white">
-					Order List
+		<!-- Invoice Items -->
+		<div class="card mb-4 ">
+			<div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
+				Invoice Items
+				<button class="btn btn-danger btn-sm" id="AddItem" onclick="addRow();">Add Item</button>
+			</div>
+			<div class="card-body row g-2" id="InRowProduct">
+				<div class="col-md-4">
+					<input type="text" class="form-control" id="Description" oninput="calculate(this)" placeholder="Add Product Description">
 				</div>
-				<div class="card-body p-0">
-					<table class="table table-striped mb-0">
-						<thead class="table-light">
-							<tr>
-								<th>Product Description</th>
-								<th>Quantity</th>
-								<th>Price</th>
-								<th>Discount</th>
-								<th>Total</th>
-								<th>Actions</th>
-							</tr>
-						</thead>
-						<tbody>
-							<!-- Dynamic rows here -->
+				<div class="col-md-2">
+					<input type="number" class="form-control" id="Quantity" oninput="calculate(this)" placeholder="Quantity" value="1">
+				</div>
+				<div class="col-md-2">
+					<input type="number" class="form-control" id="Price" oninput="calculate(this)" placeholder="Unit Price">
+				</div>
+				<div class="col-md-2">
+					<input type="number" class="form-control" id="Discount" oninput="calculate(this)" placeholder="Discount %">
+				</div>
+				<div class="col-md-2">
+					<input type="text" class="form-control" id="Total" value="0" readonly>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- Order List and Order Summary -->
+		<div class="row g-3">
+			<div class="col-md-8">
+				<div class="card">
+					<div class="card-header bg-info text-white">
+						Order List
+					</div>
+					<div class="card-body p-0">
+						<table class="table table-striped mb-0" id="ProductTable">
+							<thead class="table-light">
+								<tr>
+									<th>Product Description</th>
+									<th>Quantity</th>
+									<th>Price</th>
+									<th>Discount</th>
+									<th>Total</th>
+									<th>Actions</th>
+								</tr>
+							</thead>
+							<tbody>
+								 
 						</tbody>
 					</table>
 				</div>
@@ -239,6 +239,96 @@
 
 }
 
+<script>
+	function addRow(){
+		//get input values
+		const description = document.getElementById("Description").value;//user jei input dibe seta get korara jonno document.getElementById() dey.
+		const quantity = parseFloat(document.getElementById("Quantity").value);
+		const price = parseFloat(document.getElementById("Price").value);
+		const discount = parseFloat(document.getElementById("Discount").value) || 0; // || 0 mane holo user inpt na dile ekta 0 return korbe.
+
+		//Calculate total after discount
+		const total = quantity * price * (1 - discount / 100); //const er man poriborrton kora jay na, let er man priborton kora jay.
+
+		//Create new row HTML
+		const table = document.querySelector("#ProductTable tbody");
+		const row = document.createElement("tr");
+
+	row.innerHTML = `
+			<td>${description}</td>
+			<td>${quantity}</td>
+			<td>${price}</td>
+			<td>${discount}</td>
+			<td>${total.toFixed(2)}</td>
+			<td><button class="btn btn-danger btn-sm" onclick="deleteRow(this)">Delete</button></td>
+		`;
+			// #ProductTable tbody = টেবিলের বডি, যেটার ভিতরে নতুন সারি (row) বসাতে চাও। createElement("tr")=একটি নতুন টেবিলের সারি তৈরি করছো। appendChild(row) = ঐ tbody-র একদম শেষে সেই row বসিয়ে দিচ্ছো।
+			//ধরো তোমার একটা খালি ব্যাগ আছে (মানে table body),তুমি একটা কলা (row) তৈরি করছো,আর appendChild() মানে তুমি ব্যাগে সেই কলাটা রেখে দিচ্ছো।
+
+			table.appendChild(row);
+
+			document.getElementById("Description").value = "";
+		document.getElementById("Quantity").value = 1;
+		document.getElementById("Price").value = "";
+		document.getElementById("Discount").value = "";
+		document.getElementById("Total").value = "0";
+
+	}
+
+	//Delete Row
+	// button element er kacher row khuje ber korar jonno closest use kore.
+	//.remove() mane row khuje delete kore deo.
+	function deleteRow(button) {
+		button.closest("tr").remove();
+	}
+
+	
+
+</script>
+
+
+@* <script>
+	function addRow() {
+		// Get input values
+		const description = document.getElementById("Description").value;
+		const quantity = parseFloat(document.getElementById("Quantity").value);
+		const price = parseFloat(document.getElementById("Price").value);
+		const discount = parseFloat(document.getElementById("Discount").value) || 0;
+
+		// Calculate total after discount
+		const total = quantity * price * (1 - discount / 100);
+
+		// Create new row HTML
+		const table = document.querySelector("#ProductTable tbody");
+		const row = document.createElement("tr");
+
+		row.innerHTML = `
+			<td>${description}</td>
+			<td>${quantity}</td>
+			<td>${price}</td>
+			<td>${discount}</td>
+			<td>${total.toFixed(2)}</td>
+			<td><button class="btn btn-danger btn-sm" onclick="deleteRow(this)">Dlt Item</button></td>
+		`;
+
+		// Append row to table
+		table.appendChild(row);
+
+		// Optionally clear input fields
+		document.getElementById("Description").value = "";
+		document.getElementById("Quantity").value = 1;
+		document.getElementById("Price").value = "";
+		document.getElementById("Discount").value = "";
+		document.getElementById("Total").value = "0";
+	}
+
+	
+	// Delete row
+	function deleteRow(button) {
+		button.closest("tr").remove();
+	}
+</script>
+ *@
 
 <script>
 	 
@@ -249,7 +339,7 @@
 		let discountInput = row.querySelector('[id="Discount"]');
 		let totalInput = row.querySelector('[id="Total"]');
 
-		let quantity = parseFloat(quantityInput.value) || 0;
+		let quantity = parseFloat(quantityInput.value) || 0; //user jokhon data na dibe tokhon false return korara jonno ||0 dewa hoy.
 		let price = parseFloat(priceInput.value) || 0;
 		let discount = parseFloat(discountInput.value) || 0;
 
