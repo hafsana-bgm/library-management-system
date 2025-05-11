@@ -16,6 +16,8 @@ namespace Library_project.Data
         public Microsoft.EntityFrameworkCore.DbSet<Member> Member { get; set; }
         public DbSet<Book> Books { get; set; }
         public DbSet<BookLebel> BooksLebels { get; set; }
+        public DbSet<InvoiceProduct> InvoiceProducts { get; set; }
+        public DbSet<Invoice> Invoices { get; set; }
 
 
     }

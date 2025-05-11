@@ -1,4 +1,4 @@
-﻿@model Library_project.DataModel.Member
+﻿@model Library_project.DataModel.InvoiceProduct
 
 @{
 	ViewData["Title"] = "BookSells";
@@ -73,20 +73,21 @@
 			</div>
 			<div class="card-body row g-2" id="InRowProduct">
 				<div class="col-md-4">
-					<input type="text" class="form-control" id="Description" oninput="calculate(this)" placeholder="Add Product Description">
+					<input type="text" class="form-control" id="Description" name="Description" oninput="calculate(this)" placeholder="Add Product Description">
 				</div>
 				<div class="col-md-2">
-					<input type="number" class="form-control" id="Quantity" oninput="calculate(this)" placeholder="Quantity" value="1">
+					<input type="number" class="form-control" id="Quantity" name="Quantity" oninput="calculate(this)" placeholder="Quantity" value="1">
 				</div>
 				<div class="col-md-2">
-					<input type="number" class="form-control" id="Price" oninput="calculate(this)" placeholder="Unit Price">
+					<input type="number" class="form-control" id="Price" name="Price" oninput="calculate(this)" placeholder="Unit Price">
 				</div>
 				<div class="col-md-2">
-					<input type="number" class="form-control" id="Discount" oninput="calculate(this)" placeholder="Discount %">
+					<input type="number" class="form-control" id="Discount" name="Discount" oninput="calculate(this)" placeholder="Discount %">
 				</div>
 				<div class="col-md-2">
-					<input type="text" class="form-control" id="Total" value="0" readonly>
+					<input type="text" class="form-control" id="Total" name="Total" value="0" readonly>
 				</div>
+				<input  id="InvoiceProductId" name="Id" type="hidden" />
 			</div>
 
 		</div>
@@ -138,8 +139,21 @@
 					</div>
 
 				</div>
+					<div class="mt-1 d-flex gap-2 justify-content-end ">
+						<button type="button" id="SaveButton" class="btn btn-success px-4 col-md-6 ">
+							Save
+						</button>
+						@* <button type="button" id="PrintButton" class="btn btn-success px-2 col-md-6 ">
+							Print
+						</button> *@
+					</div>
+
 			</div>
+
+
 		</div>
+
+			
 	</div>
 
 	</div>
@@ -282,6 +296,8 @@
 		button.closest("tr").remove();
 	}
 
+
+
 	
 
 </script>
@@ -311,30 +327,37 @@
 
 
 
-	// $('#AddItem').cliclk(function(){
-	// 	alert("hello");
-	// var data =
-	//  {
-	// Description: $('#Description').val(),
-	// Quantity: $('#Quantity').val(),
-	// Price: $('#Price'),
-	// Discount: $('#Discount')
-	//  };
 
-	//  $.ajax({
-	// 	 url:'/Account/BookSell',
-	// 	 type:'POST',
-	// 	 data:data,
-	// 	 success: function(response){
-	// 		 $('#Total').val(response.Total.toFixed(2));
-	// 	 },
-	// 	 error:function(){
-	// 		 alert('Faild!');
-	// 	 }
 
-	//  });
+</script>
 
-	// });
+<script>
+	$('#SaveButton').click(function(){
+		
+	var data =
+	 {
+		 Id:$('#InvoiceProductId').val(),
+	Description: $('#Description').val(),
+	Quantity: $('#Quantity').val(),
+	Price: $('#Price').val(),
+	Discount: $('#Discount')val(),
+	Total: $('#Total').val()
+	 };
+
+	 $.ajax({
+		 url:'/BookSell/OrderList',
+		 type:'POST',
+		 data:data,
+		 success: function(response){
+			 alert('success');
+		 },
+		 error:function(){
+			 alert('Faild!');
+		 }
+
+	 });
+
+	});
 
 </script>
 

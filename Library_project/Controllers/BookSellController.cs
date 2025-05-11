@@ -39,6 +39,19 @@ namespace Library_project.Controllers
             }
         }
 
+        [HttpPost]
+        public IActionResult OrderList(InvoiceProduct product)
+        {
+            if (product.Quantity != null && product.Price != null && product.Total != null)
+            {
+                _context.InvoiceProducts.Add(product);
+                _context.SaveChanges();
+
+                return Json(new { success = true });
+            }
+            return Json(new {success=false});
+        }
+
     }
 }
 
