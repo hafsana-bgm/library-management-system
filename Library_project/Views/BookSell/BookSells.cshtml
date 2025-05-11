@@ -287,48 +287,6 @@
 </script>
 
 
-@* <script>
-	function addRow() {
-		// Get input values
-		const description = document.getElementById("Description").value;
-		const quantity = parseFloat(document.getElementById("Quantity").value);
-		const price = parseFloat(document.getElementById("Price").value);
-		const discount = parseFloat(document.getElementById("Discount").value) || 0;
-
-		// Calculate total after discount
-		const total = quantity * price * (1 - discount / 100);
-
-		// Create new row HTML
-		const table = document.querySelector("#ProductTable tbody");
-		const row = document.createElement("tr");
-
-		row.innerHTML = `
-			<td>${description}</td>
-			<td>${quantity}</td>
-			<td>${price}</td>
-			<td>${discount}</td>
-			<td>${total.toFixed(2)}</td>
-			<td><button class="btn btn-danger btn-sm" onclick="deleteRow(this)">Dlt Item</button></td>
-		`;
-
-		// Append row to table
-		table.appendChild(row);
-
-		// Optionally clear input fields
-		document.getElementById("Description").value = "";
-		document.getElementById("Quantity").value = 1;
-		document.getElementById("Price").value = "";
-		document.getElementById("Discount").value = "";
-		document.getElementById("Total").value = "0";
-	}
-
-	
-	// Delete row
-	function deleteRow(button) {
-		button.closest("tr").remove();
-	}
-</script>
- *@
 
 <script>
 	 
