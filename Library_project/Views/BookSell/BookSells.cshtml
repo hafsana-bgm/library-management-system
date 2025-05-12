@@ -22,18 +22,18 @@
 						<div class="mb-3">
 
 							<label>Phone*</label>
-							<input type="number" class="form-control" id="MemberPhone"  oninput="phonenumberinput(this)" placeholder="Enter Phone Number">
+							<input type="number" class="form-control" id="MemberPhone" name="MemberPhone" oninput="phonenumberinput(this)" placeholder="Enter Phone Number">
 							<div id="suggestions" style="position:absolute;z-index:1000;background:white;border:1px solid #ccc; display:none;">
 
 							</div>
 						</div>
 						<div class="mb-3">
 							<label>Name</label>
-							<input type="text" class="form-control" id="MemberName" oninput="calculate(this)" placeholder="Enter Customer Name">
+							<input type="text" class="form-control" id="MemberName" name="MemberName" oninput="calculate(this)" placeholder="Enter Customer Name">
 						</div>
 						<div class="mb-3">
 							<label>Address</label>
-							<input type="text" class="form-control" id="MemberAddress" oninput="calculate(this)" placeholder="Enter Address">
+							<input type="text" class="form-control" id="MemberAddress" name="MemberAddress" oninput="calculate(this)" placeholder="Enter Address">
 						</div>
 						<input name="MemberId" id="MemberId" type="hidden" />
 
@@ -161,6 +161,13 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+<script src="~/js/CreateInvoice.js"></script>
+
+
+
+
+
+@* 
 @section Scripts {
 	<script>
 		$(document).ready(function () {
@@ -340,10 +347,10 @@
 	Description: $('#Description').val(),
 	Quantity: $('#Quantity').val(),
 	Price: $('#Price').val(),
-	Discount: $('#Discount')val(),
+	Discount: $('#Discount').val(),
 	Total: $('#Total').val()
 	 };
-
+	 console.log(data);
 	 $.ajax({
 		 url:'/BookSell/OrderList',
 		 type:'POST',
@@ -359,7 +366,7 @@
 
 	});
 
-</script>
+</script> *@
 
 
 

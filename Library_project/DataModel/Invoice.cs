@@ -7,6 +7,7 @@ namespace Library_project.DataModel
     {
         [Key]
         public int InvoiceID { get; set; }
+        
         public string? PrinterName { get; set; }
         public DateTime? Date { get; set; }
         public int Subtotal { get; set; }

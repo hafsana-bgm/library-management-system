@@ -1,5 +1,6 @@
 ﻿using Library_project.Data;
 using Library_project.DataModel;
+using Library_project.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.SqlServer.Server;
 
@@ -22,7 +23,7 @@ namespace Library_project.Controllers
         {
             try
             {
-                var search = _context.Member.Where(x => x.MemberPhone.StartsWith(phone)).Select(x => new
+                var search = _context.Member.Where(x =>x.MemberPhone.StartsWith(phone)).Select(x => new
                     {
                         memberId = x.MemberId,
                         memberName = x.MemberName,
@@ -40,11 +41,12 @@ namespace Library_project.Controllers
         }
 
         [HttpPost]
-        public IActionResult OrderList(InvoiceProduct product)
+        public IActionResult OrderList(InvoiceVM product)
         {
-            if (product.Quantity != null && product.Price != null && product.Total != null)
+
+            if (product.invoice.InvoiceID != null && product.invoice.PrinterName != null && product.invoice.Date != null)
             {
-                _context.InvoiceProducts.Add(product);
+                _context.InvoicesVM.Add(product);
                 _context.SaveChanges();
 
                 return Json(new { success = true });

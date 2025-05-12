@@ -14,4 +14,5 @@ namespace Library_project.ViewModel
         public IFormFile? UploadImage { get; set; }
         public bool Isactive { get; set; }
     }
+
 }
