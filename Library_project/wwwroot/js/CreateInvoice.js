@@ -149,54 +149,47 @@ function calculate(input) {
 
 $('#SaveButton').click(function () {
 
-	var invoice =
-	{
-		
-		InvoiceID: $('#InvoiceID').val(),
+	var InvoiceData = {
+		InvoiceID: parseInt($('#InvoiceID').val()),
 		PrinterName: $('#PrinterName').val(),
 		Date: $('#Date').val(),
-		Subtotal: $('#Subtotal').val(),
-		TotalDiscount: $('#TotalDiscount').val(),
-		Discount: $('#Discount').val()
-
+		Subtotal: parseFloat($('#Subtotal').val()),
+		TotalDiscount: parseFloat($('#TotalDiscount').val()),
+		Discount: parseFloat($('#Discount').val())
 	};
-	var invoiceProduct = {
-		Id: $('#InvoiceProductId').val(),
+
+	var Invoiceproduct = {
+		Id: parseInt($('#InvoiceProductId').val()),
 		Description: $('#Description').val(),
-		Quantity: $('#Quantity').val(),
-		Price: $('#Price').val(),
-		Discount: $('#Discount').val(),
-		Total: $('#Total').val()
-
-
+		Quantity: parseInt($('#Quantity').val()),
+		Price: parseFloat($('#Price').val()),
+		Discount: parseFloat($('#Discount').val()),
+		Total: parseFloat($('#Total').val())
 	};
-	var member = {
-		MemberId: $('#MemberId').val(),
+
+	var MemberDetails = {
+		MemberId: parseInt($('#MemberId').val()),
 		MemberName: $('#MemberName').val(),
 		MemberPhone: $('#MemberPhone').val(),
 		MemberAddress: $('#MemberAddress').val()
-
+	};
+	debugger;
+	var product = {
+		Invoice: InvoiceData,
+		Invoiceproduct: Invoiceproduct,
+		Membe= MemberDetails
 	};
 
-	
-
-	var product = {
-		invoice: invoice,
-		InvoiceProduct: InvoiceProduct, 
-		member: Member
-	}
-	console.log(data);
 	$.ajax({
 		url: '/BookSell/OrderList',
 		type: 'POST',
-		data: product,
+		contentType: 'application/json',
+		data: JSON.stringify(product),
 		success: function (response) {
-			alert('success');
+			alert(response.success ? 'Success!' : 'Failed: ' + response.message);
 		},
 		error: function () {
-			alert('Faild!');
+			alert('Server error occurred!');
 		}
-
 	});
-
 });

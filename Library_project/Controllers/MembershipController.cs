@@ -74,41 +74,13 @@ namespace Library_project.Controllers
                     {
                         return Json(new { success = false });
                     }
-              
-                
-          
-            
+             
             }
             catch (Exception ex)
             {
                 return Json(new {success = false, message = ex.Message });
             }
         }
-
-
-
-
-        //public IActionResult MemberDelete(int? id)
-        //{
-
-        //        if (id == null)
-        //        {
-        //        return NotFound();
-        //        }
-
-        //    var Customer = _context.Member.FirstOrDefault(x => x.MemberId == id);
-
-        //    if (Customer == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    _context.Remove(Customer);
-        //    _context.SaveChanges();
-
-        //    return RedirectToAction("MemberList");
-
-        //}
 
     }
 }

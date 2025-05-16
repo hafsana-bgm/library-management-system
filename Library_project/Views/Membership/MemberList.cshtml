@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Library_project.DataModel.Member>
 
- @{
+@{
 	Layout = "~/Views/Shared/_AdminLayout.cshtml";
 	ViewData["Title"] = "Member List";
 }
@@ -9,7 +9,7 @@
 
 <!-- Default box -->
 <div class="box">
-	
+
 	<div class="box-body">
 
 
@@ -22,14 +22,10 @@
 						<th>Name </th>
 						<th>Email </th>
 						<th>Phone</th>
-						<th>Type</th> 
-						<th>Address</th> 
-						<th>IsActive</th> 
+						<th>Type</th>
+						<th>Address</th>
+						<th>IsActive</th>
 						<th>Action</th>
-
-
-
-
 					</tr>
 				</thead>
 
@@ -37,7 +33,7 @@
 
 					@{
 						int serial = 1;
-						foreach(var data in Model)
+						foreach (var data in Model)
 						{
 							<tr id="row-@data.MemberId">
 								<td>@serial</td>
@@ -51,14 +47,14 @@
 									<a class="btn btn-warning" asp-route-id="@data.MemberId" asp-action="MemberEdit" asp-controller="Membership">Edit</a>
 									<a class="btn btn-danger" onclick="DataDelete(@data.MemberId)">Delete</a>
 								</td>
-								<td name="MemberId" id="MemberId" type="hidden" ></td>
+								<td name="MemberId" id="MemberId" type="hidden"></td>
 							</tr>
-							
+
 							serial++;
 						}
 
 					}
-					
+
 
 				</tbody>
 
@@ -70,7 +66,7 @@
 
 	</div><!-- /.box-body -->
 
-</div><!-- /.box --> 
+</div><!-- /.box -->
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

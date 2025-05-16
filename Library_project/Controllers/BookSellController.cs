@@ -43,15 +43,26 @@ namespace Library_project.Controllers
         [HttpPost]
         public IActionResult OrderList(InvoiceVM product)
         {
-
-            if (product.invoice.InvoiceID != null && product.invoice.PrinterName != null && product.invoice.Date != null)
+            try
             {
-                _context.InvoicesVM.Add(product);
-                _context.SaveChanges();
+                if (product != null)
+                {
+                    if (product.Invoice.InvoiceID != null && product.Invoice.PrinterName != null && product.Invoice.Date != null && product.Invoice.Subtotal != null)
+                    {
+                        return Json(new { success = true });
+                    }
+                    return Json(new { success = false });
+                }
+               
 
-                return Json(new { success = true });
+                return Json(new {success=false});
+
+
             }
-            return Json(new {success=false});
+            catch(Exception ex)
+            {
+                return Json(new { success = false, message = "Server error: " + ex.Message });
+            }
         }
 
     }
