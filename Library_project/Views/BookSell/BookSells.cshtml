@@ -1,4 +1,4 @@
-﻿@model Library_project.DataModel.InvoiceProduct
+﻿
 
 @{
 	ViewData["Title"] = "BookSells";
@@ -127,15 +127,15 @@
 				<div class="card-body">
 					<div class="mb-2">
 						<label>Subtotal (without Discount):</label>
-							<input type="text" class="form-control" id="Subtotal" name="Subtotal" value="0.00" readonly>
+							<input type="text" class="form-control" id="Subtotal" name="Subtotal" value="0.00">
 					</div>
 					<div class="mb-2">
 						<label>Total Discount:</label>
-							<input type="text" class="form-control" id="TotalDiscount" name="TotalDiscount" value="0.00" readonly>
+							<input type="text" class="form-control" id="TotalDiscount" name="TotalDiscount" value="0.00" >
 					</div>
 					<div class="mb-2">
 						<label>Discount:</label>
-							<input type="text" class="form-control" id="Discount" name="Discount" readonly>
+							<input type="text" class="form-control" id="InvoiceDiscount" name="InvoiceDiscount">
 					</div>
 
 				</div>

@@ -148,14 +148,13 @@ function calculate(input) {
 
 
 $('#SaveButton').click(function () {
-
 	var InvoiceData = {
 		InvoiceID: parseInt($('#InvoiceID').val()),
 		PrinterName: $('#PrinterName').val(),
 		Date: $('#Date').val(),
 		Subtotal: parseFloat($('#Subtotal').val()),
 		TotalDiscount: parseFloat($('#TotalDiscount').val()),
-		Discount: parseFloat($('#Discount').val())
+		Discount: parseFloat($('#InvoiceDiscount').val())
 	};
 
 	var Invoiceproduct = {
@@ -173,11 +172,11 @@ $('#SaveButton').click(function () {
 		MemberPhone: $('#MemberPhone').val(),
 		MemberAddress: $('#MemberAddress').val()
 	};
-	debugger;
+
 	var product = {
 		Invoice: InvoiceData,
 		Invoiceproduct: Invoiceproduct,
-		Membe= MemberDetails
+		Member: MemberDetails  // ✅ Fixed
 	};
 
 	$.ajax({

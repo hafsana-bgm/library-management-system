@@ -41,14 +41,15 @@ namespace Library_project.Controllers
         }
 
         [HttpPost]
-        public IActionResult OrderList(InvoiceVM product)
+        public IActionResult OrderList([FromBody]InvoiceVM product)
         {
             try
             {
                 if (product != null)
                 {
-                    if (product.Invoice.InvoiceID != null && product.Invoice.PrinterName != null && product.Invoice.Date != null && product.Invoice.Subtotal != null)
+                    if (product.Invoice.InvoiceID != null && product.Invoice.PrinterName != null && product.Invoice.Date != null && product.Invoice.Subtotal != null && product.Invoiceproduct.Discount !=null && product.Invoiceproduct.Total !=null && product.Invoiceproduct.Price !=null && product.Invoiceproduct.Quantity !=null && product.Member.MemberPhone !=null && product.Member.MemberName !=null)
                     {
+                        
                         return Json(new { success = true });
                     }
                     return Json(new { success = false });

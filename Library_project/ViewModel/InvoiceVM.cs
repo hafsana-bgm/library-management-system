@@ -7,10 +7,11 @@ namespace Library_project.ViewModel
 
     public class InvoiceVM
     {
-        public Invoice? Invoice { get; set; }
-        public InvoiceProduct? Invoiceproduct { get; set; }
-        public Member? Member { get; set; }
+        public Invoice Invoice { get; set; }
+        public InvoiceProduct Invoiceproduct { get; set; }
+        public Member Member { get; set; }
     }
+
 
     public class Invoice
     {
