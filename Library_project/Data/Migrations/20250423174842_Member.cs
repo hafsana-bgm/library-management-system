@@ -5,7 +5,7 @@
 namespace Library_project.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class testv3 : Migration
+    public partial class Member : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
