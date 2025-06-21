@@ -1,0 +1,114 @@
+﻿@model Library_project.DataModel.BuyBook
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "Member Index";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Us</title>
+    <style>
+        body {
+          font-family: Georgia, serif;
+          background: #f4f4f4;
+          margin: 0;
+          padding: 0;
+        }
+
+        .contact-container {
+          width: 400px;
+          margin: 50px auto;
+          background: #fff;
+          border-top: 5px solid #3f51b5;
+          box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+
+        .contact-header {
+          background: #333;
+          color: white;
+          text-align: center;
+          padding: 20px 0;
+          font-size: 24px;
+          font-weight: bold;
+        }
+
+        form {
+          padding: 20px;
+        }
+
+        label {
+          display: block;
+          margin-top: 10px;
+          margin-bottom: 5px;
+          font-size: 16px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+          width: 100%;
+          padding: 8px;
+          box-sizing: border-box;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          font-size: 14px;
+        }
+
+        textarea {
+          height: 60px;
+          resize: vertical;
+        }
+
+        .required {
+          color: red;
+        }
+
+        .submit-container {
+          background: #333;
+          padding: 20px;
+          text-align: center;
+          clip-path: polygon(0 0, 100% 0, 100% 85%, 95% 100%, 90% 85%, 85% 100%, 80% 85%, 75% 100%, 70% 85%, 65% 100%, 60% 85%, 55% 100%, 50% 85%, 45% 100%, 40% 85%, 35% 100%, 30% 85%, 25% 100%, 20% 85%, 15% 100%, 10% 85%, 5% 100%, 0 85%);
+        }
+
+        input[type="submit"] {
+          background: #3f51b5;
+          color: white;
+          padding: 10px 20px;
+          font-size: 16px;
+          border: none;
+          border-radius: 20px;
+          cursor: pointer;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="submit"]:hover {
+          background: #303f9f;
+        }
+    </style>
+</head>
+<body>
+    <div class="contact-container">
+        <div class="contact-header">Contact Us</div>
+        <form asp-action="Submit_MemberInfo">
+            <label>Name <span class="required">*</span></label>
+            <input type="text" name="name" asp-for="name" required>
+
+            <label>E-mail <span class="required">*</span></label>
+            <input type="email" name="email" asp-for="Email" required>
+
+            <label>Contact Number <span class="required">*</span></label>
+            <input type="text" name="contact" asp-for="Contact" required>
+
+            <label>Message <span class="required">*</span></label>
+            <textarea name="message" asp-for="Massage" required></textarea>
+
+            <div class="submit-container">
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+</body>
+</html>

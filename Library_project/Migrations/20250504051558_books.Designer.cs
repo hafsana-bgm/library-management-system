@@ -4,16 +4,19 @@ using Library_project.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Library_project.Migrations
+namespace Library_project.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250504051558_books")]
+    partial class books
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,11 +25,7 @@ namespace Library_project.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-<<<<<<< HEAD:Library_project/Migrations/ApplicationDbContextModelSnapshot.cs
-            modelBuilder.Entity("Library_project.DataModel.Companis", b =>
-=======
             modelBuilder.Entity("Library_project.DataModel.Book_info", b =>
->>>>>>> 41913b9581a7c0eb4e37c83183f34103c673ecd6:Library_project/Data/Migrations/ApplicationDbContextModelSnapshot.cs
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -34,20 +33,6 @@ namespace Library_project.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-<<<<<<< HEAD:Library_project/Migrations/ApplicationDbContextModelSnapshot.cs
-                    b.Property<string>("CompanyAddress")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CompanyContact")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CompanyName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Company");
-=======
                     b.Property<string>("Author")
                         .HasColumnType("nvarchar(max)");
 
@@ -116,7 +101,6 @@ namespace Library_project.Migrations
                     b.HasKey("Image_levelID");
 
                     b.ToTable("Image");
->>>>>>> 41913b9581a7c0eb4e37c83183f34103c673ecd6:Library_project/Data/Migrations/ApplicationDbContextModelSnapshot.cs
                 });
 
             modelBuilder.Entity("Library_project.DataModel.Member", b =>
@@ -127,12 +111,9 @@ namespace Library_project.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MemberId"));
 
-<<<<<<< HEAD:Library_project/Migrations/ApplicationDbContextModelSnapshot.cs
-=======
                     b.Property<int>("Id")
                         .HasColumnType("int");
 
->>>>>>> 41913b9581a7c0eb4e37c83183f34103c673ecd6:Library_project/Data/Migrations/ApplicationDbContextModelSnapshot.cs
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 

@@ -1,0 +1,56 @@
+﻿@model Library_project.DataModel.Book_info
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "Member Index";
+}
+
+<div class="card card-primary">
+    <div class="card-header">
+        <h3 class="card-title">Book Information</h3>
+    </div>
+    <!-- /.card-header -->
+    <!-- form start -->
+    <form asp-action="BookEditSubmit" asp-controller="Book">
+        <div class="card-body">
+            <div class="form-group">
+                <label >Book Name</label>
+                <input  name="Id" asp-for="Id" type="hidden"/>
+                <input type="text" class="form-control" asp-for="Book_Name" name="Book_Name">
+            </div>
+            
+            <div class="form-group">
+                <label >Book Description</label>
+                <input type="text" class="form-control" asp-for="Book_Description">
+            </div>
+            
+            <div class="form-group">
+                <label >Book Price</label>
+                <input type="number" class="form-control" asp-for="Book_Price">
+            </div>
+            
+            <div class="form-group">
+                <label >Author</label>
+                <input type="text" class="form-control" asp-for="Author">
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" asp-for="IsActive">
+                <label class="form-check-label" for="exampleCheck1">Available</label>
+            </div>
+            <div class="form-group">
+                <label >Fine Amount</label>
+                <input type="number" class="form-control" asp-for="Book_Name" />
+            </div>
+            
+            <div class="form-group">
+                <label>picture</label>
+                <input type="file" class="form-control" asp-for="Image" placeholder=" ">
+            </div>
+        </div>
+        <!-- /.card-body -->
+
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Update</button>
+        </div>
+    </form>
+</div>

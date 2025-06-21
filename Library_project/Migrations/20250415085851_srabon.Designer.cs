@@ -4,16 +4,19 @@ using Library_project.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Library_project.Migrations
+namespace Library_project.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250415085851_srabon")]
+    partial class srabon
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,103 +24,6 @@ namespace Library_project.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-<<<<<<< HEAD:Library_project/Migrations/ApplicationDbContextModelSnapshot.cs
-            modelBuilder.Entity("Library_project.DataModel.Companis", b =>
-=======
-            modelBuilder.Entity("Library_project.DataModel.Book_info", b =>
->>>>>>> 41913b9581a7c0eb4e37c83183f34103c673ecd6:Library_project/Data/Migrations/ApplicationDbContextModelSnapshot.cs
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-<<<<<<< HEAD:Library_project/Migrations/ApplicationDbContextModelSnapshot.cs
-                    b.Property<string>("CompanyAddress")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CompanyContact")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CompanyName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Company");
-=======
-                    b.Property<string>("Author")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Book_Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Book_Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Book_Price")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Fine_Amount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Image")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Image_levelID")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Books");
-                });
-
-            modelBuilder.Entity("Library_project.DataModel.BuyBook", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
-
-                    b.Property<string>("Contact")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Massage")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("id");
-
-                    b.ToTable("buyBooks");
-                });
-
-            modelBuilder.Entity("Library_project.DataModel.Image_lebel", b =>
-                {
-                    b.Property<int>("Image_levelID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Image_levelID"));
-
-                    b.Property<string>("Image_leveName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Image_levelID");
-
-                    b.ToTable("Image");
->>>>>>> 41913b9581a7c0eb4e37c83183f34103c673ecd6:Library_project/Data/Migrations/ApplicationDbContextModelSnapshot.cs
-                });
 
             modelBuilder.Entity("Library_project.DataModel.Member", b =>
                 {
@@ -127,12 +33,6 @@ namespace Library_project.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MemberId"));
 
-<<<<<<< HEAD:Library_project/Migrations/ApplicationDbContextModelSnapshot.cs
-=======
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
->>>>>>> 41913b9581a7c0eb4e37c83183f34103c673ecd6:Library_project/Data/Migrations/ApplicationDbContextModelSnapshot.cs
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 

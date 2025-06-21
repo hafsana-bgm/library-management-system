@@ -1,0 +1,48 @@
+﻿@{
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+	ViewData["Title"] = "Member Index";
+}
+
+
+@model IEnumerable<Library_project.DataModel. Member>
+
+
+
+<table class="table table-hover">
+	<thead class="table-info">
+		<tr>
+			<th class="col-1">Serial</th>
+			<th class="col-2">MemberName</th>
+			<th class="col-2">MemberPhone</th>
+			<th class="col-2">MemberEmail</th>	
+			<th class="col-2">MemberAddress</th>
+			<th class="col-2">Action</th>
+		</tr>
+	</thead>
+
+	<tbody>
+
+		@{
+			int serial = 1;
+			foreach (var data in Model)
+			{
+
+						<tr>
+							<td>@serial</td>
+							<td>@data.MemberName</td>
+							<td>@data.MemberPhone</td>
+							<td>@data.MemberEmail</td>						
+							<td>@data.MemberAddress</td>
+							
+							<td>
+						<a class="btn btn-success" asp-action="MemberEdit" asp-route-id="@data.Id">Edit</a>
+								<a class="btn btn-danger" asp-action=" " asp-route-id="@data.Id">Delete</a>
+							</td>
+						</tr>
+				serial++;
+			}
+		}
+
+	</tbody>
+
+</table>
