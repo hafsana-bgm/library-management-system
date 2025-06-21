@@ -20,6 +20,8 @@ namespace Library_project.Controllers
 
         public IActionResult Privacy()
         {
+            ViewBag.Name = "Hello world";
+            ViewData["Name2"] = "HI";
             return View();
         }
 

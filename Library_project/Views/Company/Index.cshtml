@@ -1,0 +1,29 @@
+﻿@{
+    var Products = ViewBag.Name as List<Library_project.DataModel.Companis>;
+}
+<h2>Company List</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <td>Id</td>
+            <td>Company Name</td>
+            <td>Company Address</td>
+            <td>Company Contact</td>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+        @foreach (var Item in Products)
+        {
+            <tr>
+                <td>@Item.Id</td>
+                <td>@Item.CompanyName</td>
+                <td>@Item.CompanyAddress</td>
+                <td>@Item.CompanyContact</td>
+            </tr>
+        }
+    </tbody>
+</table>

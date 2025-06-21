@@ -14,6 +14,7 @@ namespace Library_project.Data
 
         }
         public Microsoft.EntityFrameworkCore.DbSet<Member> Members { get; set; }
+        public DbSet<Companis> Company { get; set; }
        
     }
 }
