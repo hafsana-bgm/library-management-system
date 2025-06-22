@@ -6,8 +6,8 @@ namespace Library_project.Controllers
     public class CompanyController : Controller
     {
         private readonly ApplicationDbContext _context;
-        public CompanyController(ApplicationDbContext context) 
-        { 
+        public CompanyController(ApplicationDbContext context)
+        {
             _context = context;
         }
         public IActionResult Index()
@@ -16,6 +16,17 @@ namespace Library_project.Controllers
 
             ViewBag.Name = getdata;
 
+
+            return View();
+        }
+
+        public IActionResult Actionresult()
+        {
+          
+
+            var data = _context.Actionresults.OrderByDescending(x => x.Id).ToList();
+
+            ViewBag.Name= data;
 
             return View();
         }

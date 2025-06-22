@@ -39,7 +39,7 @@ namespace Library_project.Controllers
             //SELECT* FROM Books where id = 1;
             //Database Query
 
-            var getdata = _context.Members.Where(x => x.Id == id).FirstOrDefault();
+            var getdata = _context.Members.Where(x => x.MemberId == id).FirstOrDefault();
 
             return View(getdata);
         }
@@ -48,7 +48,7 @@ namespace Library_project.Controllers
         public IActionResult MemberEditSubmit(Member model)
         {
 
-            var getdata = _context.Members.Where(x => x.Id == model.Id).FirstOrDefault();
+            var getdata = _context.Members.Where(x => x.MemberId == model.MemberId).FirstOrDefault();
 
             if (getdata != null)
             {

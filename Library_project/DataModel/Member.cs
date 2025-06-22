@@ -12,6 +12,6 @@ namespace Library_project.DataModel
         public string? MemberType { get; set; }
         public string? MemberAddress {  get; set; }
         public bool IsActive { get; set; }
-        public int Id { get; internal set; }
+    
     }
 }

@@ -1,0 +1,31 @@
+﻿@{
+	ViewData["Title"] = "ActionsResult";
+	var Company = ViewBag.Name as List<Library_project.DataModel.Actionresult>;
+}
+
+<table class="table">
+
+	<thead>
+		<tr>
+			<td>Id</td>
+			<td>Name</td>
+			<td>Address</td>
+			<td>Contact</td>
+		</tr>
+	</thead>
+
+	<tbody>
+		@foreach (var Item in Company)
+		{
+		<tr>
+
+			<td>@Item.Id</td>
+			<td>@Item.Name</td>
+			<td>@Item.Address</td>
+			<td>@Item.Contact</td>
+		</tr>	
+		}
+
+	</tbody>
+
+</table>
