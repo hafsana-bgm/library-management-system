@@ -15,16 +15,20 @@
 	</thead>
 
 	<tbody>
+		{
 		@foreach (var Item in Company)
 		{
-		<tr>
+			<tr>
 
-			<td>@Item.Id</td>
-			<td>@Item.Name</td>
-			<td>@Item.Address</td>
-			<td>@Item.Contact</td>
-		</tr>	
+				<td>@Item.Id</td>
+				<td>@Item.Name</td>
+				<td>@Item.Address</td>
+				<td>@Item.Contact</td>
+			</tr>
 		}
+
+		}
+	
 
 	</tbody>
 

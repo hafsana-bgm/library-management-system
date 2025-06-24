@@ -26,6 +26,8 @@ namespace Library_project.Controllers
 
             var data = _context.Actionresults.OrderByDescending(x => x.Id).ToList();
 
+            var item = _context.Actionresults.Where(x => x.Id==id).Firstordeuflt();
+
             ViewBag.Name= data;
 
             return View();
